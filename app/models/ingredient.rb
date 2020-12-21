@@ -1,5 +1,10 @@
 class Ingredient < ApplicationRecord
-    has_many :recipes
-    has_many :users, through: :recipes
+    has_many :recipe_ingredients
     has_many :allergies
+    has_many :recipes, through: :recipe_ingredients
+    has_many :users, through: :allergies
+
+    def users_allergic
+        self.users.count
+    end
 end
